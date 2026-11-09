@@ -331,6 +331,17 @@ main{display:block;padding-bottom:56px}
   .cl li{gap:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* story: owner photo on the left (small), text on the right, on every screen size */
+.story{grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:40px;align-items:center}
+.owner{max-width:none;margin:0}
+@media (max-width:860px){
+  .story{grid-template-columns:minmax(0,34%) minmax(0,1fr);gap:18px;align-items:start}
+  .owner h3{font-size:1rem;margin-top:10px}
+  .owner span{font-size:.85rem}
+  .story h2{font-size:1.35rem}
+  .story p{font-size:1rem;margin-top:8px}
+}
 </style>
 </head>
 <body>
@@ -410,8 +421,8 @@ function priceFor(kg){
 const CUP_PRICE = 120;                                  // 75 g cup, as printed on your label
 const PACK_PRICE = {350:400, 500:565, 750:750, 1000:950, 2000:1700, 3000:2600};   // same as the price table above
 const COFFEE_W = [100, 250, 500, 750, 1000];
-const COFFEE_PRICE = {100:650, 250:1550, 500:3000, 750:4400, 1000:5800};
-const BOTTLES = [{ml:250, price:700}, {ml:500, price:1300}, {ml:1000, price:2400}];
+const COFFEE_PRICE = {100:649, 250:1550, 500:3000, 750:4400, 1000:5800};
+const BOTTLES = [{ml:250, price:1720}, {ml:500, price:1300}, {ml:1000, price:2400}];
 
 /* ---------- Text in three languages: [English, Tamil, Sinhala] ---------- */
 const LANGS = ['en','ta','si'];
@@ -701,8 +712,9 @@ function viewHome(){
       ${box('coffee', 'c', imgTag('home_coffee'), 'MHD ' + T(['Coffee','காபி','කෝපි']), t('coffeeBox'))}
       ${box('books', 'k', imgTag('home_kids'), 'MHD ' + T(['Kids Books','குழந்தைகள் புத்தகங்கள்','ළමා පොත්']), t('kidsBox'))}
     </div></section>
-  <section class="wrap sec"><div class="story"><div><h2>${t('storyT')}</h2><p>${t('storyP')}</p></div>
-    <div class="owner"><div class="ph">${ownerPic()}</div><h3>Mohamed Fowsan</h3><span>${t('ownerRole')}</span></div></div></section>`;
+  <section class="wrap sec"><div class="story">
+    <div class="owner"><div class="ph">${ownerPic()}</div><h3>Mohamed Fowsan</h3><span>${t('ownerRole')}</span></div>
+    <div><h2>${t('storyT')}</h2><p>${t('storyP')}</p></div></div></section>`;
 }
 const GALS = {
   watt: () => ({bg:'#ffffff', items:[
